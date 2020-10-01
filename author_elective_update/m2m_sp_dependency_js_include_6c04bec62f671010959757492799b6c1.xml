@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="m2m_sp_dependency_js_include">
+    <m2m_sp_dependency_js_include action="DELETE">
+        <order>200</order>
+        <sp_dependency display_value="gojs">60733ac62f671010959757492799b689</sp_dependency>
+        <sp_js_include display_value="gojs-angular">50a3bac62f671010959757492799b688</sp_js_include>
+        <sys_class_name>m2m_sp_dependency_js_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-10-01 01:03:41</sys_created_on>
+        <sys_id>6c04bec62f671010959757492799b6c1</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>gojs.gojs-angular</sys_name>
+        <sys_package display_value="SDLC Mind Map" source="x_12584_sdlc_mind">4eaaaa8a2fe31010959757492799b603</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SDLC Mind Map">4eaaaa8a2fe31010959757492799b603</sys_scope>
+        <sys_update_name>m2m_sp_dependency_js_include_6c04bec62f671010959757492799b6c1</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-10-01 01:17:19</sys_updated_on>
+    </m2m_sp_dependency_js_include>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="SDLC Mind Map">4eaaaa8a2fe31010959757492799b603</application>
+        <file_path/>
+        <instance_id>66c58e43dbec7f00387021c405961957</instance_id>
+        <instance_name>dev79124</instance_name>
+        <name>m2m_sp_dependency_js_include_6c04bec62f671010959757492799b6c1</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="m2m_sp_dependency_js_include"><m2m_sp_dependency_js_include action="INSERT_OR_UPDATE"><order>200</order><sp_dependency display_value="gojs">60733ac62f671010959757492799b689</sp_dependency><sp_js_include display_value="gojs-angular">50a3bac62f671010959757492799b688</sp_js_include><sys_class_name>m2m_sp_dependency_js_include</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2020-10-01 01:03:41</sys_created_on><sys_id>6c04bec62f671010959757492799b6c1</sys_id><sys_mod_count>1</sys_mod_count><sys_name>gojs.gojs-angular</sys_name><sys_package display_value="SDLC Mind Map" source="x_12584_sdlc_mind">4eaaaa8a2fe31010959757492799b603</sys_package><sys_policy/><sys_scope display_value="SDLC Mind Map">4eaaaa8a2fe31010959757492799b603</sys_scope><sys_update_name>m2m_sp_dependency_js_include_6c04bec62f671010959757492799b6c1</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-10-01 01:17:19</sys_updated_on></m2m_sp_dependency_js_include></record_update>]]></payload>
+        <payload_hash>-1567128286</payload_hash>
+        <record_name>gojs.gojs-angular</record_name>
+        <reverted_from/>
+        <source>42aaaa8a2fe31010959757492799b606</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-10-01 01:17:19</sys_created_on>
+        <sys_id>54273e4a2f671010959757492799b69e</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>174e1bc2b8e0000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-10-01 01:17:19</sys_updated_on>
+        <type>Dependency JS Includes</type>
+        <update_guid>dc273e4a7a671010551d2f24ab6ce99d</update_guid>
+        <update_guid_history>dc273e4a7a671010551d2f24ab6ce99d:-1567128286,6804bec6856710100d6224a0da7e14c3:1089724407</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="gojs.gojs-angular">2a89b20e2f671010959757492799b639</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-10-01 01:27:51</sys_created_on>
+        <sys_db_object display_value="" name="m2m_sp_dependency_js_include">m2m_sp_dependency_js_include</sys_db_object>
+        <sys_id>1942e18b4ab14bb086c8ad90611b3100</sys_id>
+        <sys_metadata>6c04bec62f671010959757492799b6c1</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>gojs.gojs-angular</sys_name>
+        <sys_package display_value="SDLC Mind Map" source="x_12584_sdlc_mind">4eaaaa8a2fe31010959757492799b603</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="SDLC Mind Map">4eaaaa8a2fe31010959757492799b603</sys_scope>
+        <sys_scope_delete display_value="">13eb5b3e5ef0455283b802be79c7bcd1</sys_scope_delete>
+        <sys_update_name>m2m_sp_dependency_js_include_6c04bec62f671010959757492799b6c1</sys_update_name>
+        <sys_update_version display_value="m2m_sp_dependency_js_include_6c04bec62f671010959757492799b6c1">54273e4a2f671010959757492799b69e</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-10-01 01:27:51</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

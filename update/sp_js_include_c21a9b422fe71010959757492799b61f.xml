@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_js_include">
+    <sp_js_include action="INSERT_OR_UPDATE">
+        <display_name>angular-select2</display_name>
+        <source>local</source>
+        <sys_class_name>sp_js_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-10-01 03:51:13</sys_created_on>
+        <sys_id>c21a9b422fe71010959757492799b61f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>angular-select2</sys_name>
+        <sys_package display_value="SDLC Mind Map" source="x_12584_sdlc_mind">4eaaaa8a2fe31010959757492799b603</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SDLC Mind Map">4eaaaa8a2fe31010959757492799b603</sys_scope>
+        <sys_ui_script display_value="x_12584_sdlc_mind.angular-select2">9d2a53822fe71010959757492799b653</sys_ui_script>
+        <sys_update_name>sp_js_include_c21a9b422fe71010959757492799b61f</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-10-01 03:51:13</sys_updated_on>
+        <url/>
+    </sp_js_include>
+</record_update>

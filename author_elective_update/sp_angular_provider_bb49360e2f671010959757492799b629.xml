@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_angular_provider">
+    <sp_angular_provider action="DELETE">
+        <name>goDiagram</name>
+        <script><![CDATA[function() {
+        return {
+          restrict: 'E',
+          template: '',  // just an empty DIV element
+          replace: true,
+          scope: { model: '=goModel' },
+          link: function(scope, element, attrs) {
+
+            if (window.goSamples) goSamples(); // init for these samples -- you don't need to call this
+
+            var $ = go.GraphObject.make;
+            var diagram =  // create a Diagram for the given HTML DIV element
+              $(go.Diagram, element[0],
+                {
+                  nodeTemplate: $(go.Node, "Auto",
+                    new go.Binding("location", "loc", go.Point.parse).makeTwoWay(go.Point.stringify),
+                    $(go.Shape, "RoundedRectangle", new go.Binding("fill", "color"),
+                      {
+                        portId: "", cursor: "pointer", strokeWidth: 0,
+                        fromLinkable: true, toLinkable: true,
+                        fromLinkableSelfNode: true, toLinkableSelfNode: true,
+                        fromLinkableDuplicates: true, toLinkableDuplicates: true
+                      }),
+                    $(go.TextBlock, { margin: 8, editable: true },
+                      new go.Binding("text", "name").makeTwoWay())
+                  ),
+                  linkTemplate: $(go.Link,
+                    { relinkableFrom: true, relinkableTo: true },
+                    $(go.Shape),
+                    $(go.Shape, { toArrow: "Standard", stroke: null, strokeWidth: 0 })
+                  ),
+                  "ModelChanged": updateAngular,
+                  "ChangedSelection": updateSelection,
+                  "undoManager.isEnabled": true
+                });
+
+            // whenever a GoJS transaction has finished modifying the model, update all Angular bindings
+            function updateAngular(e) {
+              if (e.isTransactionFinished) {
+                scope.$apply();
+              }
+            }
+
+            // update the Angular model when the Diagram.selection changes
+            function updateSelection(e) {
+              diagram.model.selectedNodeData = null;
+              var it = diagram.selection.iterator;
+              while (it.next()) {
+                var selnode = it.value;
+                // ignore a selected link or a deleted node
+                if (selnode instanceof go.Node && selnode.data !== null) {
+                  diagram.model.selectedNodeData = selnode.data;
+                  break;
+                }
+              }
+              scope.$apply();
+            }
+
+            // notice when the value of "model" changes: update the Diagram.model
+            scope.$watch("model", function(newmodel) {
+              var oldmodel = diagram.model;
+              if (oldmodel !== newmodel) {
+                diagram.removeDiagramListener("ChangedSelection", updateSelection);
+                diagram.model = newmodel;
+                diagram.addDiagramListener("ChangedSelection", updateSelection);
+              }
+            });
+
+            scope.$watch("model.selectedNodeData.name", function(newname) {
+              if (!diagram.model.selectedNodeData) return;
+              // disable recursive updates
+              diagram.removeModelChangedListener(updateAngular);
+              // change the name
+              diagram.startTransaction("change name");
+              // the data property has already been modified, so setDataProperty would have no effect
+              var node = diagram.findNodeForData(diagram.model.selectedNodeData);
+              if (node !== null) node.updateTargetBindings("name");
+              diagram.commitTransaction("change name");
+              // re-enable normal updates
+              diagram.addModelChangedListener(updateAngular);
+            });
+          }
+        };
+      }]]></script>
+        <sys_class_name>sp_angular_provider</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-10-01 01:27:38</sys_created_on>
+        <sys_id>bb49360e2f671010959757492799b629</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>goDiagram</sys_name>
+        <sys_package display_value="SDLC Mind Map" source="x_12584_sdlc_mind">4eaaaa8a2fe31010959757492799b603</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SDLC Mind Map">4eaaaa8a2fe31010959757492799b603</sys_scope>
+        <sys_update_name>sp_angular_provider_bb49360e2f671010959757492799b629</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-10-01 01:27:38</sys_updated_on>
+        <type>directive</type>
+    </sp_angular_provider>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="SDLC Mind Map">4eaaaa8a2fe31010959757492799b603</application>
+        <file_path/>
+        <instance_id>66c58e43dbec7f00387021c405961957</instance_id>
+        <instance_name>dev79124</instance_name>
+        <name>sp_angular_provider_bb49360e2f671010959757492799b629</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sp_angular_provider"&gt;&lt;sp_angular_provider action="INSERT_OR_UPDATE"&gt;&lt;name&gt;goDiagram&lt;/name&gt;&lt;script&gt;&lt;![CDATA[function() {
+        return {
+          restrict: 'E',
+          template: '',  // just an empty DIV element
+          replace: true,
+          scope: { model: '=goModel' },
+          link: function(scope, element, attrs) {
+
+            if (window.goSamples) goSamples(); // init for these samples -- you don't need to call this
+
+            var $ = go.GraphObject.make;
+            var diagram =  // create a Diagram for the given HTML DIV element
+              $(go.Diagram, element[0],
+                {
+                  nodeTemplate: $(go.Node, "Auto",
+                    new go.Binding("location", "loc", go.Point.parse).makeTwoWay(go.Point.stringify),
+                    $(go.Shape, "RoundedRectangle", new go.Binding("fill", "color"),
+                      {
+                        portId: "", cursor: "pointer", strokeWidth: 0,
+                        fromLinkable: true, toLinkable: true,
+                        fromLinkableSelfNode: true, toLinkableSelfNode: true,
+                        fromLinkableDuplicates: true, toLinkableDuplicates: true
+                      }),
+                    $(go.TextBlock, { margin: 8, editable: true },
+                      new go.Binding("text", "name").makeTwoWay())
+                  ),
+                  linkTemplate: $(go.Link,
+                    { relinkableFrom: true, relinkableTo: true },
+                    $(go.Shape),
+                    $(go.Shape, { toArrow: "Standard", stroke: null, strokeWidth: 0 })
+                  ),
+                  "ModelChanged": updateAngular,
+                  "ChangedSelection": updateSelection,
+                  "undoManager.isEnabled": true
+                });
+
+            // whenever a GoJS transaction has finished modifying the model, update all Angular bindings
+            function updateAngular(e) {
+              if (e.isTransactionFinished) {
+                scope.$apply();
+              }
+            }
+
+            // update the Angular model when the Diagram.selection changes
+            function updateSelection(e) {
+              diagram.model.selectedNodeData = null;
+              var it = diagram.selection.iterator;
+              while (it.next()) {
+                var selnode = it.value;
+                // ignore a selected link or a deleted node
+                if (selnode instanceof go.Node &amp;&amp; selnode.data !== null) {
+                  diagram.model.selectedNodeData = selnode.data;
+                  break;
+                }
+              }
+              scope.$apply();
+            }
+
+            // notice when the value of "model" changes: update the Diagram.model
+            scope.$watch("model", function(newmodel) {
+              var oldmodel = diagram.model;
+              if (oldmodel !== newmodel) {
+                diagram.removeDiagramListener("ChangedSelection", updateSelection);
+                diagram.model = newmodel;
+                diagram.addDiagramListener("ChangedSelection", updateSelection);
+              }
+            });
+
+            scope.$watch("model.selectedNodeData.name", function(newname) {
+              if (!diagram.model.selectedNodeData) return;
+              // disable recursive updates
+              diagram.removeModelChangedListener(updateAngular);
+              // change the name
+              diagram.startTransaction("change name");
+              // the data property has already been modified, so setDataProperty would have no effect
+              var node = diagram.findNodeForData(diagram.model.selectedNodeData);
+              if (node !== null) node.updateTargetBindings("name");
+              diagram.commitTransaction("change name");
+              // re-enable normal updates
+              diagram.addModelChangedListener(updateAngular);
+            });
+          }
+        };
+      }]]&gt;&lt;/script&gt;&lt;sys_class_name&gt;sp_angular_provider&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2020-10-01 01:27:38&lt;/sys_created_on&gt;&lt;sys_id&gt;bb49360e2f671010959757492799b629&lt;/sys_id&gt;&lt;sys_mod_count&gt;0&lt;/sys_mod_count&gt;&lt;sys_name&gt;goDiagram&lt;/sys_name&gt;&lt;sys_package display_value="SDLC Mind Map" source="x_12584_sdlc_mind"&gt;4eaaaa8a2fe31010959757492799b603&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="SDLC Mind Map"&gt;4eaaaa8a2fe31010959757492799b603&lt;/sys_scope&gt;&lt;sys_update_name&gt;sp_angular_provider_bb49360e2f671010959757492799b629&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2020-10-01 01:27:38&lt;/sys_updated_on&gt;&lt;type&gt;directive&lt;/type&gt;&lt;/sp_angular_provider&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>-1806552964</payload_hash>
+        <record_name>goDiagram</record_name>
+        <reverted_from/>
+        <source>42aaaa8a2fe31010959757492799b606</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-10-01 01:27:38</sys_created_on>
+        <sys_id>1779728a2f671010959757492799b6ad</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>174e1c59d0e0000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-10-01 01:27:38</sys_updated_on>
+        <type>Widget Angular Provider</type>
+        <update_guid>5f79728ab46710108fda553a36eb03ac</update_guid>
+        <update_guid_history>5f79728ab46710108fda553a36eb03ac:-1806552964</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="goDiagram">c14dfa8e2f671010959757492799b68c</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-10-01 01:44:08</sys_created_on>
+        <sys_db_object display_value="" name="sp_angular_provider">sp_angular_provider</sys_db_object>
+        <sys_id>00a7f8f136f942648008b50c1112cf44</sys_id>
+        <sys_metadata>bb49360e2f671010959757492799b629</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>goDiagram</sys_name>
+        <sys_package display_value="SDLC Mind Map" source="x_12584_sdlc_mind">4eaaaa8a2fe31010959757492799b603</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="SDLC Mind Map">4eaaaa8a2fe31010959757492799b603</sys_scope>
+        <sys_scope_delete display_value="">13eb5b3e5ef0455283b802be79c7bcd1</sys_scope_delete>
+        <sys_update_name>sp_angular_provider_bb49360e2f671010959757492799b629</sys_update_name>
+        <sys_update_version display_value="sp_angular_provider_bb49360e2f671010959757492799b629">1779728a2f671010959757492799b6ad</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-10-01 01:44:08</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

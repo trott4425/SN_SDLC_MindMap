@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_page">
+    <sp_page action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <css/>
+        <draft>false</draft>
+        <dynamic_title_structure/>
+        <id>sdlc_graph</id>
+        <internal>false</internal>
+        <public>false</public>
+        <roles/>
+        <short_description/>
+        <sys_class_name>sp_page</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-10-01 00:59:45</sys_created_on>
+        <sys_id>4313bec22f671010959757492799b660</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>sdlc_graph</sys_name>
+        <sys_package display_value="SDLC Mind Map" source="x_12584_sdlc_mind">4eaaaa8a2fe31010959757492799b603</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SDLC Mind Map">4eaaaa8a2fe31010959757492799b603</sys_scope>
+        <sys_update_name>sp_page_4313bec22f671010959757492799b660</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-10-01 00:59:45</sys_updated_on>
+        <title>SDLC Graph - Test Page</title>
+    </sp_page>
+    <sys_translated_text action="delete_multiple" query="documentkey=4313bec22f671010959757492799b660"/>
+</record_update>

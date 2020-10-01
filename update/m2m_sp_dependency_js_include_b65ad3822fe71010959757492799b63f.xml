@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="m2m_sp_dependency_js_include">
+    <m2m_sp_dependency_js_include action="INSERT_OR_UPDATE">
+        <order>100</order>
+        <sp_dependency display_value="select2">56f9dbce2fa71010959757492799b663</sp_dependency>
+        <sp_js_include display_value="angular-select2">c21a9b422fe71010959757492799b61f</sp_js_include>
+        <sys_class_name>m2m_sp_dependency_js_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-10-01 03:51:13</sys_created_on>
+        <sys_id>b65ad3822fe71010959757492799b63f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>select2.angular-select2</sys_name>
+        <sys_package display_value="SDLC Mind Map" source="x_12584_sdlc_mind">4eaaaa8a2fe31010959757492799b603</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SDLC Mind Map">4eaaaa8a2fe31010959757492799b603</sys_scope>
+        <sys_update_name>m2m_sp_dependency_js_include_b65ad3822fe71010959757492799b63f</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-10-01 03:51:13</sys_updated_on>
+    </m2m_sp_dependency_js_include>
+</record_update>

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function($scope, spUtil) {
+    var c = this;
+
+    /*$scope.model = new go.GraphLinksModel(
+      [
+        { key: 1, name: "Alpha", color: "lightblue" },
+        { key: 2, name: "Beta", color: "orange" },
+        { key: 3, name: "Gamma", color: "lightgreen" },
+        { key: 4, name: "Delta", color: "pink" }
+      ],
+      [
+        { from: 1, to: 2 },
+        { from: 1, to: 3 },
+        { from: 2, to: 2 },
+        { from: 3, to: 4 },
+        { from: 4, to: 1 }
+      ]);*/
+
+    $scope.model = new go.GraphLinksModel(c.data.nodes, c.data.links);
+
+    $scope.model.selectedNodeData = null;
+
+    $scope.select_options = c.data.sprints;
+    $scope.selected_options = '';
+
+    $scope.sprint = {
+        displayValue: c.data.sprint.short_description,
+        value: c.data.sprint.sys_id,
+        name: 'sprint'
+    };
+
+    $scope.$on("field.change", function(evt, parms) {
+        if (parms.field.name == 'sprint')
+            c.data.setSprint = parms.newValue;
+
+        c.server.update().then(function(response) {
+			console.log(response);
+			$scope.model = new go.GraphLinksModel(c.data.nodes, c.data.links);
+            spUtil.update($scope);
+        })
+    });
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>sdlc_graph</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>SDLC Graph</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+    /* populate the 'data' object */
+    /* e.g., data.table = $sp.getValue('table'); */
+
+    var nodes = [];
+    var links = [];
+	data.sprint = {
+		short_description: '',
+		sys_id: ''
+	};
+	
+    if (input) {
+		data.sprint = input.setSprint;
+		
+        var storyGR = new GlideRecord('rm_story');
+        storyGR.addEncodedQuery('sprint=' + data.sprint);
+        storyGR.query();
+        while (storyGR.next()) {
+            nodes.push({
+                key: storyGR.sys_id.toString(),
+                name: storyGR.short_description.toString(),
+                color: "lightblue"
+            });
+
+            var dependencyGR = new GlideRecord('m2m_story_dependencies');
+            dependencyGR.addEncodedQuery('dependent_story=' + storyGR.sys_id);
+            dependencyGR.query();
+            while (dependencyGR.next()) {
+                links.push({
+                    from: dependencyGR.prerequisite_story.sys_id.toString(),
+                    to: dependencyGR.dependent_story.sys_id.toString()
+                });
+            }
+
+            var prerequisiteGR = new GlideRecord('m2m_story_dependencies');
+            prerequisiteGR.addEncodedQuery('prerequisite_story= ' + storyGR.sys_id);
+            prerequisiteGR.query();
+            while (prerequisiteGR.next()) {
+                links.push({
+                    from: prerequisiteGR.prerequisite_story.sys_id.toString(),
+                    to: prerequisiteGR.dependent_story.sys_id.toString()
+                });
+            }
+        }
+    }
+    data.nodes = nodes;
+    data.links = links;
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-10-01 00:59:45</sys_created_on>
+        <sys_id>cb13bec22f671010959757492799b65d</sys_id>
+        <sys_mod_count>30</sys_mod_count>
+        <sys_name>SDLC Graph</sys_name>
+        <sys_package display_value="SDLC Mind Map" source="x_12584_sdlc_mind">4eaaaa8a2fe31010959757492799b603</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SDLC Mind Map">4eaaaa8a2fe31010959757492799b603</sys_scope>
+        <sys_update_name>sp_widget_cb13bec22f671010959757492799b65d</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-10-01 05:13:51</sys_updated_on>
+        <template><![CDATA[ <!-- only needed for the goSamples framework -->
+<div id="sample" class="ng-binding">
+  <!-- a go-diagram element referring to the model, originally written as: -->
+  <go-diagram go-model="model" style="border: solid 1px blue; width:100%; height:400px"></go-diagram>
+  <select2 placeholder="Sprint" ng-model="selected_option" s2-options="val.id as val.name for val in select_options"></select2>
+  <sn-record-picker
+  field="sprint"
+  table="'rm_sprint'"
+  display-field="'short_description'"
+  value-field="'sys_id'"
+  display-fields="'short_description'"
+  search-fields="'short_description'"
+  page-size="100"
+  placeholder="Search for a sprint." />
+  
+  Number of node data: {{model.nodeDataArray.length}}
+  <br>
+  Alpha node location: {{model.findNodeDataForKey(1).loc}}
+  <br>
+  Selected node: {{model.selectedNodeData.key}}  <input type="text" ng-model="model.selectedNodeData.name" class="ng-pristine ng-untouched ng-valid">
+  <br>
+  Number of link data: {{model.linkDataArray.length}}
+</div>
+]]></template>
+    </sp_widget>
+</record_update>
